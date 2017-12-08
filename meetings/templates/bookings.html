@@ -1,0 +1,93 @@
+<!-- from index.html, it shows its booking reservations -->
+
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html lang="en"> <head>
+<title>Reservations</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css"
+     href="//cdn.jsdelivr.net/bootstrap/latest/css/bootstrap.css"/>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css"
+    href="/static/css/busy.css"
+/>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+</script>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.js" 
+  type="text/javascript"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.print.css" rel="stylesheet">
+
+</head>
+
+<body> <!-- header-->
+<div class="container">
+<div class = "col-md-4">
+  <h1>Reservations</h1>
+</div>
+
+
+{% if g.calendars is defined  %}
+<p> availability </p>
+{% for cal in g.calendars if cal.selected %}
+<div class="col-md-4">
+  <label><input type="checkbox" name="calculation" value="{{ cal.id }}">{{ cal.summary }}</label><br/>
+    
+{% endfor %}
+<input type="submit" id="subChk" value="Please add the inputs" style="font-size: 10px"><br/>
+{% endif %}
+<input type="submit" id="add_acc" style="font-size: 10px"><br/>
+</div>
+
+
+<div class="row">
+  <div id="allEvents" style="margin-top: 20px;">
+  </div>
+</div>
+
+<script>
+  /*
+  여기서부터 addition
+  */
+
+  
+
+
+
+
+
+
+
+
+  
+</script>
+    
+
+  </div>  <!-- container (for bootstrap) -->
+  </body> </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -21,6 +21,9 @@ import httplib2   # used in oauth2 flow
 # Google API for services
 from apiclient import discovery
 
+# Mongo database
+from pymongo import MongoClient
+
 ###
 # Globals
 ###
@@ -38,6 +41,29 @@ app.secret_key=CONFIG.SECRET_KEY
 SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
 CLIENT_SECRET_FILE = CONFIG.GOOGLE_KEY_FILE  ## You'll need this
 APPLICATION_NAME = 'MeetMe class project'
+
+#mongo client - from flask_main.py from mongo/memos
+MONGO_CLIENT_URL = "mongodb://{}:{}@{}:{}/{}".format(
+    CONFIG.DB_USER,
+    CONFIG.DB_USER_PW,
+    CONFIG.DB_HOST, 
+    CONFIG.DB_PORT, 
+    CONFIG.DB)
+
+
+print("Using URL '{}'".format(MONGO_CLIENT_URL))
+
+
+try: 
+    dbclient = MongoClient(MONGO_CLIENT_URL)
+    db = getattr(dbclient, str(CONFIG.DB)) ## modify str(CONFIG.DB) to change the int value to str value
+    collection = db.dated
+
+except:
+    print("Failure opening database.  Is Mongo running? Correct password?")
+    sys.exit(1)
+
+
 
 #############################
 #
@@ -67,8 +93,8 @@ def choose():
 
     gcal_service = get_gcal_service(credentials)
     app.logger.debug("Returned from get_gcal_service")
-    flask.g.calendars = list_calendars(gcal_service)
-    return render_template('index.html')
+    flask.session['calandars'] = list_calendars(gcal_service) 
+    return flask.redirect("/schedule/" + flask.session['uid'])
 
 ####
 #

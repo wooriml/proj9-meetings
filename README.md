@@ -1,10 +1,8 @@
-# proj6-Gcal
+# proj9-Meetings(final projects)
 Snarf appointment data from a selection of a user's Google calendars 
 
 ## What is here
 
-I've provided code for the authorization (oauth2) protocol for Google
-calendars.  There is also a picker for a date range. 
 
 ## What you'll add
 
